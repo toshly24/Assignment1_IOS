@@ -16,19 +16,19 @@ class ViewController: UIViewController {
     
         
     }
-    let url1 = "https://phonevalidation.abstractapi.com/v1/"
+    let url1 = "https://phonevalidation.abstractapi.com/v1/"   //1st api url
     @IBAction func api1(_ sender: Any) {
         getData1(from: url1)
 
     }
     
-    let url2 = "https://openlibrary.org/works/OL15626917W.json"
+    let url2 = "https://openlibrary.org/works/OL15626917W.json" //2nd api url
     
     @IBAction func api2(_ sender: Any) {
         getData2(from: url2)
     }
     
-    let url3 = "https://api.artic.edu/api/v1/artworks"
+    let url3 = "https://api.artic.edu/api/v1/artworks" //3rd api url
 
     @IBAction func api3(_ sender: Any) {
         getData3(from: url3)
