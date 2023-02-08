@@ -21,6 +21,12 @@ class ViewController: UIViewController {
         getData1(from: url1)
 
     }
+    
+    let url2 = "https://openlibrary.org/works/OL15626917W.json"
+    
+    @IBAction func api2(_ sender: Any) {
+        getData2(from: url2)
+    }
     private func getData1(from url1: String)
            
            {
@@ -59,6 +65,43 @@ class ViewController: UIViewController {
                })
                task.resume()
            }
+    
+    private func getData2(from url2: String)
+        
+        {
+            
+            let task = URLSession.shared.dataTask(with: URL(string: url2)!, completionHandler: {data, response, error in
+                guard let data = data, error == nil
+                else
+                {
+                    print("something went wrong")
+                    return
+                }
+                
+                var result : Response2?
+                
+                do
+                {
+                    result = try JSONDecoder().decode(Response2.self, from: data)
+                }
+                catch
+                {
+                    print("failed to convert")
+                }
+                
+                guard let json = result
+                else
+                {
+                    return
+                }
+                
+                
+                    print(json.created.type)
+                    print(json.created.value)
+                
+            })
+            task.resume()
+        }
 
 }
 
@@ -71,5 +114,16 @@ let error: MyResult1
 struct MyResult1: Codable{
     let message : String
     let code : String
+}
 
+struct Response2: Codable
+{
+let created: MyResult2
+
+}
+
+struct MyResult2: Codable{
+    let type : String
+    let value : String
+    
 }
