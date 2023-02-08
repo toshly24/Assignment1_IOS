@@ -27,6 +27,13 @@ class ViewController: UIViewController {
     @IBAction func api2(_ sender: Any) {
         getData2(from: url2)
     }
+    
+    let url3 = "https://api.artic.edu/api/v1/artworks"
+
+    @IBAction func api3(_ sender: Any) {
+        getData3(from: url3)
+
+    }
     private func getData1(from url1: String)
            
            {
@@ -102,8 +109,50 @@ class ViewController: UIViewController {
             })
             task.resume()
         }
+    
+    private func getData3(from url3: String)
+        
+        {
+            
+            let task = URLSession.shared.dataTask(with: URL(string: url3)!, completionHandler: {data, response, error in
+                guard let data = data, error == nil
+                else
+                {
+                    print("something went wrong")
+                    return
+                }
+                
+                var result : Response3?
+                
+                do
+                {
+                    result = try JSONDecoder().decode(Response3.self, from: data)
+                }
+                catch
+                {
+                    print("failed to convert")
+                }
+                
+                guard let json = result
+                else
+                {
+                    return
+                }
+                
+                                   print(json.pagination.total)
+                                   print(json.pagination.limit)
+                                   print(json.pagination.offset)
+                                   print(json.pagination.total_pages)
+                                   print(json.pagination.current_page)
+                                   print(json.pagination.next_url)
+                
+            })
+            task.resume()
+        }
 
 }
+
+
 
 struct Response1: Codable
 {
@@ -127,3 +176,18 @@ struct MyResult2: Codable{
     let value : String
     
 }
+
+struct Response3: Codable
+{
+let pagination: MyResult3
+}
+
+struct MyResult3: Codable{
+    let total : Int
+    let limit : Int
+    let offset : Int
+    let total_pages : Int
+    let current_page : Int
+    let next_url : String
+}
+

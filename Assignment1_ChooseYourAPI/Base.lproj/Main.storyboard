@@ -41,7 +41,7 @@
                                 <buttonConfiguration key="configuration" style="filled" title="API3"/>
                                 <connections>
                                     <action selector="api2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HQ3-xc-ge6"/>
-                                    <action selector="api3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q0Y-yd-u0V"/>
+                                    <action selector="api3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MmI-Yf-2qb"/>
                                 </connections>
                             </button>
                         </subviews>
